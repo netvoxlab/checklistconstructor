@@ -1,0 +1,40 @@
+﻿@using CheckList.Models
+@model CheckList.Models.Survey
+@{
+	ViewBag.Title = "Create";
+}
+
+<script src="~/Scripts/CustomJs.js"></script>
+
+<h2>Пользователь - @ViewBag.CurrentUser</h2>
+<hr />
+<h2>Create new survey</h2>
+
+@using (Html.BeginForm("Create", "Survey", FormMethod.Post))
+{
+	<p>Name: @Html.EditorFor(m => m.Name)</p>
+	<hr/>
+	<h4>Headers</h4>
+	<div id="headers" class="container">
+	</div>
+
+	@Html.AddLink("Add Header", "#headers", ".header", "", "headers", typeof(CheckList.Models.SurveyHeader))
+
+	<hr />
+	<h4>Columns</h4>
+	<div id="columns" class="container">
+	</div>
+	
+	<p>
+		@Html.AddLink("Add Column", "#columns", ".column", "", "columns", typeof(CheckList.Models.SurveyHeader))
+	</p>
+	<hr />
+	<h4>Rows</h4>
+	<div id="rows" class="container">
+	</div>
+
+	@Html.AddLink("Add Row", "#rows", ".row", "", "rows", typeof(CheckList.Models.SurveyHeader))
+
+	<hr/>
+	<input type="submit" value="Создать" class="btn btn-default"/>
+}

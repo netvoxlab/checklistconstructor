@@ -1,0 +1,34 @@
+﻿@model ICollection<CheckList.Models.SurveyDataDetails>
+@{
+	ViewBag.Title = "Result";
+}
+
+<h2>Результаты опроса:</h2>
+
+@{
+	<table class="table table-striped table-bordered">
+		<thead class="text-center alert-info">
+		<tr>
+			<td>User</td>
+			<td>SurveyColumn.Id</td>
+			<td>SurveyRow.Id</td>
+			<td>Data</td>
+		</tr>
+		</thead>
+		<tbody>
+			@foreach (var surveyData in Model)
+			{
+				<tr>
+					<td>@surveyData.User.Name</td>
+					<td>@surveyData.SurveyColumn.Id</td>
+					<td>@surveyData.SurveyRow.Id</td>
+					<td>@surveyData.Name</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+<hr />
+
+@Html.ActionLink("Home", "Index", null, new { @class = "btn btn-default" })

@@ -1,0 +1,34 @@
+﻿@model ICollection<CheckList.Models.Survey>
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Пользователь - @ViewBag.CurrentUser</h2>
+
+@using (Html.BeginForm("Index", "Survey", FormMethod.Post))
+{
+	<fieldset>
+		<p>
+			@Html.DropDownList("Users")
+			<input type="submit" value="Выбрать" class="btn btn-default"/>
+		</p>
+	</fieldset>
+}
+<hr/>
+<h2>Текущие опросы:</h2>
+
+@Html.ActionLink("+ Новый опрос", "Create", null, new { @class = "btn btn-primary" })
+
+@{
+	foreach (var survey in Model)
+	{
+		<hr />
+		<h4>Опрос №@survey.Id - @survey.Name</h4>
+
+		<div class="btn-group">
+			@Html.ActionLink("Пройти", "Pass", survey, new { @class = "btn btn-default" })
+			@Html.ActionLink("Результаты", "Result", survey, new { @class = "btn btn-default" })
+			@Html.ActionLink("Удалить", "Remove", survey, new { @class = "btn btn-default" })
+		</div>
+	}
+}
